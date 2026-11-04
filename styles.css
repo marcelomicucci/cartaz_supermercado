@@ -48,6 +48,11 @@ button[hidden] { display: none !important; }
 h1, h2, p { margin-top: 0; }
 h1 { margin-bottom: 0; font-size: 25px; }
 h2 { margin-bottom: 14px; font-size: 14px; }
+.app-credit {
+  margin: 1px 0 0;
+  color: #aaa49a;
+  font-size: 10px;
+}
 
 .topbar-actions { display: flex; gap: 10px; }
 .app-nav {

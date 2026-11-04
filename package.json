@@ -1,11 +1,11 @@
 {
   "name": "cartaz-facil",
   "productName": "Cartaz Fácil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Editor de cartazes para impressão em papéis pré-impressos.",
   "main": "main.js",
   "author": "Marcelo Micucci",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": true,
   "homepage": "https://github.com/marcelomicucci/cartaz_supermercado#readme",
   "repository": {

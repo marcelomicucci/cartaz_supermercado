@@ -2,13 +2,13 @@ module.exports = {
   packagerConfig: {
     asar: true,
     executableName: "CartazFacil",
+    extraResource: ["LICENSE", "CREDITS.md"],
     ignore: [
       /^\/\.github/,
       /^\/docs/,
       /^\/scripts/,
       /^\/out/,
       /^\/(CONTRIBUTING|README|SECURITY)\.md$/,
-      /^\/LICENSE$/,
       /^\/forge\.config\.js$/,
       /^\/package-lock\.json$/
     ]
