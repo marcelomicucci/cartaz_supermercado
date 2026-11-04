@@ -21,7 +21,7 @@
     "make": "electron-forge make",
     "check": "node --check app.js && node --check main.js && node --check forge.config.js",
     "screenshot": "electron scripts/capture-poster.js",
-    "test": "electron scripts/smoke-test.js"
+    "test": "electron --no-sandbox scripts/smoke-test.js"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1"
