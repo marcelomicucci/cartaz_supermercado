@@ -6,7 +6,7 @@
 
 Edite produtos, preços e datas em segundos. Calibre o conteúdo para papéis pré-impressos, salve modelos reutilizáveis e mantenha toda a operação offline.
 
-[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-f4d03f.svg)](LICENSE)
+[![Licença BSD 3-Clause](https://img.shields.io/badge/licen%C3%A7a-BSD%203--Clause-f4d03f.svg)](LICENSE)
 [![CI](https://github.com/marcelomicucci/cartaz_supermercado/actions/workflows/ci.yml/badge.svg)](https://github.com/marcelomicucci/cartaz_supermercado/actions/workflows/ci.yml)
 [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?logo=windows)](https://github.com/marcelomicucci/cartaz_supermercado/releases)
 [![Electron](https://img.shields.io/badge/Electron-desktop-47848F?logo=electron)](https://www.electronjs.org/)
@@ -101,9 +101,15 @@ O Cartaz Fácil não possui telemetria nem integração com serviços externos. 
 
 Sugestões, correções e novos modelos são bem-vindos. Consulte o [guia de contribuição](CONTRIBUTING.md) antes de abrir um pull request.
 
-## Licença
+## Licença e créditos
 
-Distribuído sob a [licença MIT](LICENSE). A fonte `Oferta do Dia` integra este projeto e segue os mesmos termos.
+O Cartaz Fácil pode ser usado, modificado e distribuído gratuitamente,
+inclusive em projetos comerciais, sob a [licença BSD 3-Clause](LICENSE).
+
+Redistribuições do código ou de aplicativos derivados devem preservar o aviso
+de copyright e os créditos a **Marcelo Micucci — Cartaz Fácil**, conforme o
+arquivo [CREDITS.md](CREDITS.md). A fonte `Oferta do Dia` integra este projeto
+e segue os mesmos termos.
 
 ---
 
