@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; img-src 'self' data:">
+  <title>Cartaz Fácil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">EDITOR DE OFERTAS</p>
+      <h1>Cartaz Fácil</h1>
+    </div>
+    <nav class="app-nav" aria-label="Áreas do sistema">
+      <button class="nav-button active" data-view="editor" type="button">Editor</button>
+      <button class="nav-button" data-view="media" type="button">Mídias</button>
+      <button class="nav-button" data-view="templates" type="button">Templates</button>
+    </nav>
+    <div class="topbar-actions">
+      <button class="button button-secondary" id="saveTemplateShortcut" type="button">Salvar como template</button>
+      <button class="button button-primary" id="printButton" type="button">Imprimir cartaz</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view active" id="editorView">
+      <div class="workspace">
+        <aside class="panel">
+          <section class="panel-section">
+            <div class="section-title">
+              <h2>Base do cartaz</h2>
+              <button class="text-button" id="resetButton" type="button">Limpar</button>
+            </div>
+            <label>
+              Mídia
+              <select id="mediaSelect"></select>
+            </label>
+            <label>
+              Visualização do pré-impresso
+              <select id="artStyle">
+                <option value="portrait">Oferta vertical</option>
+                <option value="burst">Explosão</option>
+                <option value="blank">Sem fundo</option>
+              </select>
+            </label>
+            <div class="media-summary" id="mediaSummary"></div>
+          </section>
+
+          <section class="panel-section">
+            <h2>Conteúdo</h2>
+            <label>
+              Chamada
+              <input id="headline" maxlength="28" value="LEITE EM PÓ">
+            </label>
+            <label>
+              Produto
+              <input id="product" maxlength="32" value="NINHO">
+            </label>
+            <div class="field-row">
+              <label>
+                Detalhe
+                <input id="detail" maxlength="24" value="INSTANTÂNEO">
+              </label>
+              <label>
+                Unidade
+                <input id="unit" maxlength="18" value="LATA 380G">
+              </label>
+            </div>
+            <div class="field-row">
+              <label>
+                Preço
+                <input id="price" inputmode="decimal" maxlength="10" value="13,99">
+              </label>
+              <label>
+                Sufixo
+                <select id="suffix">
+                  <option value="">Sem sufixo</option>
+                  <option value="/UN">/UN</option>
+                  <option value="/KG">/KG</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Data ou validade
+              <input id="dateText" maxlength="30" placeholder="Ex.: Válido até 15/06">
+            </label>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">
+              <h2>Ajuste fino</h2>
+              <button class="text-button" id="toggleCalibration" type="button">Mostrar guias</button>
+            </div>
+            <div class="field-row">
+              <label>
+                Horizontal (mm)
+                <input id="offsetX" type="number" min="-30" max="30" step="0.5" value="0">
+              </label>
+              <label>
+                Vertical (mm)
+                <input id="offsetY" type="number" min="-30" max="30" step="0.5" value="0">
+              </label>
+            </div>
+            <label>
+              Escala geral: <output id="scaleOutput">100%</output>
+              <input id="scale" type="range" min="70" max="125" value="100">
+            </label>
+            <h3>Posição dos blocos</h3>
+            <div class="position-controls">
+              <label>Textos <span><output id="textBlockYOutput">0 mm</output><input id="textBlockY" type="range" min="-100" max="100" step="1" value="0"></span></label>
+              <label>Preço/data <span><output id="priceBlockYOutput">0 mm</output><input id="priceBlockY" type="range" min="-100" max="100" step="1" value="0"></span></label>
+            </div>
+            <div class="hint">Valores negativos sobem o bloco; valores positivos descem.</div>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">
+              <h2>Tamanho dos elementos</h2>
+              <button class="text-button" id="resetSizes" type="button">Restaurar</button>
+            </div>
+            <div class="size-controls">
+              <label>Chamada <span><output id="headlineSizeOutput">100%</output><input id="headlineSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Produto <span><output id="productSizeOutput">100%</output><input id="productSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Detalhe <span><output id="detailSizeOutput">100%</output><input id="detailSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Unidade <span><output id="unitSizeOutput">100%</output><input id="unitSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Moeda R$ <span><output id="currencySizeOutput">100%</output><input id="currencySize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Valor principal <span><output id="priceMainSizeOutput">100%</output><input id="priceMainSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Centavos <span><output id="centsSizeOutput">100%</output><input id="centsSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Sufixo /UN <span><output id="suffixSizeOutput">100%</output><input id="suffixSize" type="range" min="40" max="300" value="100"></span></label>
+              <label>Data <span><output id="dateSizeOutput">100%</output><input id="dateSize" type="range" min="40" max="300" value="100"></span></label>
+            </div>
+            <div class="hint">Os textos ainda encolhem automaticamente quando necessário para não ultrapassar a área útil.</div>
+          </section>
+        </aside>
+
+        <section class="preview-area" aria-label="Pré-visualização do cartaz">
+          <div class="paper-wrap">
+            <article class="paper template-portrait" id="paper">
+              <div class="template-art" aria-hidden="true">
+                <div class="offer-header">OFERTA</div>
+                <div class="burst-shape"></div>
+              </div>
+              <div class="safe-area" aria-hidden="true"></div>
+              <div class="content" id="content">
+                <div class="text-block" id="textBlock">
+                  <div class="headline" id="headlinePreview">LEITE EM PÓ</div>
+                  <div class="product-line">
+                    <div class="product" id="productPreview">NINHO</div>
+                    <div class="unit" id="unitPreview">LATA 380G</div>
+                  </div>
+                  <div class="detail" id="detailPreview">INSTANTÂNEO</div>
+                </div>
+                <div class="price-block" id="priceBlock">
+                  <div class="price" id="pricePreview">
+                    <span class="currency">R$</span>
+                    <span class="price-main">13</span>
+                    <span class="price-cents">,99</span>
+                    <span class="price-suffix"></span>
+                  </div>
+                  <div class="date-text" id="datePreview"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <p class="preview-note">O fundo é apenas uma referência e não será impresso.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="view management-view" id="mediaView">
+      <div class="management-header">
+        <div>
+          <p class="eyebrow dark">CONFIGURAÇÃO FÍSICA</p>
+          <h2>Mídias de impressão</h2>
+          <p>Cadastre cada tamanho de papel e sua área útil. As medidas são em milímetros.</p>
+        </div>
+        <button class="button button-primary" id="newMediaButton" type="button">Nova mídia</button>
+      </div>
+      <div class="card-grid" id="mediaList"></div>
+    </section>
+
+    <section class="view management-view" id="templatesView">
+      <div class="management-header">
+        <div>
+          <p class="eyebrow dark">CONTEÚDO REUTILIZÁVEL</p>
+          <h2>Biblioteca de templates</h2>
+          <p>Carregue uma composição pronta e altere apenas preço, data ou outro campo necessário.</p>
+        </div>
+        <button class="button button-primary" id="newTemplateButton" type="button">Salvar cartaz atual</button>
+      </div>
+      <div class="card-grid" id="templateList"></div>
+    </section>
+  </main>
+
+  <dialog id="mediaDialog">
+    <form method="dialog" id="mediaForm">
+      <input type="hidden" id="mediaId">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow dark">MÍDIA</p>
+          <h2 id="mediaDialogTitle">Nova mídia</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Fechar" type="submit" formnovalidate>×</button>
+      </div>
+      <label>Nome <input id="mediaName" required placeholder="Ex.: Cartaz A4 amarelo"></label>
+      <div class="field-row">
+        <label>Largura (mm) <input id="mediaWidth" required type="number" min="20" max="1000" step="0.1" value="210"></label>
+        <label>Altura (mm) <input id="mediaHeight" required type="number" min="20" max="1000" step="0.1" value="297"></label>
+      </div>
+      <h3>Margens da área útil</h3>
+      <div class="four-fields">
+        <label>Superior <input id="marginTop" type="number" min="0" step="0.5" value="45"></label>
+        <label>Direita <input id="marginRight" type="number" min="0" step="0.5" value="15"></label>
+        <label>Inferior <input id="marginBottom" type="number" min="0" step="0.5" value="18"></label>
+        <label>Esquerda <input id="marginLeft" type="number" min="0" step="0.5" value="15"></label>
+      </div>
+      <label>
+        Visual padrão
+        <select id="mediaArtStyle">
+          <option value="portrait">Oferta vertical</option>
+          <option value="burst">Explosão</option>
+          <option value="blank">Sem fundo</option>
+        </select>
+      </label>
+      <div class="dialog-actions">
+        <button class="button button-muted" value="cancel" type="submit" formnovalidate>Cancelar</button>
+        <button class="button button-primary" id="saveMediaButton" value="default" type="submit">Salvar mídia</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="templateDialog">
+    <form method="dialog" id="templateForm">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow dark">TEMPLATE</p>
+          <h2>Salvar cartaz atual</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Fechar" type="submit" formnovalidate>×</button>
+      </div>
+      <label>Nome do template <input id="templateName" required placeholder="Ex.: Leite Ninho semanal"></label>
+      <div class="hint">A mídia, os textos, o preço e os ajustes atuais serão guardados. Depois, qualquer campo poderá ser alterado sem modificar o template original.</div>
+      <div class="dialog-actions">
+        <button class="button button-muted" value="cancel" type="submit" formnovalidate>Cancelar</button>
+        <button class="button button-primary" id="saveTemplateButton" value="default" type="submit">Salvar template</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+name: Relatar um problema
+description: Informe um erro reproduzível no Cartaz Fácil.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o resultado observado e o resultado esperado.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir?
+      placeholder: Liste os passos, a mídia e os valores usados.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão
+      placeholder: Ex. 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Versão do Windows
+      placeholder: Ex. Windows 11 24H2
+  - type: textarea
+    id: extras
+    attributes:
+      label: Capturas ou informações adicionais
