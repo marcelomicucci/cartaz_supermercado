@@ -7,6 +7,7 @@
 Edite produtos, preços e datas em segundos. Calibre o conteúdo para papéis pré-impressos, salve modelos reutilizáveis e mantenha toda a operação offline.
 
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-f4d03f.svg)](LICENSE)
+[![CI](https://github.com/marcelomicucci/cartaz_supermercado/actions/workflows/ci.yml/badge.svg)](https://github.com/marcelomicucci/cartaz_supermercado/actions/workflows/ci.yml)
 [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?logo=windows)](https://github.com/marcelomicucci/cartaz_supermercado/releases)
 [![Electron](https://img.shields.io/badge/Electron-desktop-47848F?logo=electron)](https://www.electronjs.org/)
 
