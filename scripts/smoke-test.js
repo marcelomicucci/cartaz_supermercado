@@ -2,6 +2,9 @@ const { app, BrowserWindow, session } = require("electron");
 const path = require("node:path");
 
 app.commandLine.appendSwitch("disable-gpu");
+if (process.platform === "linux") {
+  app.commandLine.appendSwitch("no-sandbox");
+}
 
 async function runSmokeTest() {
   await session.defaultSession.clearStorageData({ storages: ["localstorage"] });
